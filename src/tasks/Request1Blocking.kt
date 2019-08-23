@@ -3,6 +3,7 @@ package tasks
 import contributors.*
 import retrofit2.Response
 
+// Memo: メインスレッドをブロックしている
 fun loadContributorsBlocking(service: GitHubService, req: RequestData) : List<User> {
     val repos = service
         .getOrgReposCall(req.org)

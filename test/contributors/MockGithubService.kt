@@ -7,14 +7,13 @@ import retrofit2.mock.Calls
 
 object MockGithubService : GitHubService {
     override fun getOrgReposCall(org: String): Call<List<Repo>> {
-        return Calls.response(repos)
+        return Calls.response(Response.success(repos))
     }
 
     override fun getRepoContributorsCall(owner: String, repo: String): Call<List<User>> {
-        return Calls.response(reposMap.getValue(repo).users)
+        return Calls.response(Response.success(reposMap.getValue(repo).users))
     }
 
-/*
     // Uncomment the following implementations after adding these methods to GitHubService:
 
     override suspend fun getOrgRepos(org: String): Response<List<Repo>> {
@@ -27,5 +26,4 @@ object MockGithubService : GitHubService {
         delay(testRepo.delay)
         return Response.success(testRepo.users)
     }
-*/
 }
