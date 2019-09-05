@@ -34,6 +34,17 @@ import kotlinx.coroutines.*
 //             updateResults(users, startTime)
 //         }
 //     }
+// ※ 確実に特定のスレッドで実行させたい場合はsuspend関数内で指定しるのもあり
+//     suspend fun refreshTitle() {
+//        withContext(Dispatchers.IO) {
+//            try {
+//                val result = network.fetchNewWelcome().await()
+//                titleDao.insertTitle(Title(result))
+//            } catch (error: FakeNetworkException) {
+//                throw TitleRefreshError(error)
+//            }
+//        }
+//    }
 suspend fun loadContributorsConcurrent(service: GitHubService, req: RequestData): List<User> = coroutineScope {
     val repos = service
         .getOrgRepos(req.org)
