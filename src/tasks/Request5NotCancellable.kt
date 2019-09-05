@@ -9,7 +9,8 @@ MEMO:
 - launch, async, runBlockingは自動的にCoroutineScopeを生成して、新しいCoroutineをスタートさせる
 - 新しいCoroutineは、必ずCoroutineScope内でスタートされる必要がある
     - そのため、Coroutineを利用するにはメインスレッドをrunBlockingで開始させておく必要がある
-    - ※ runBlockingは現在のスレッドをブロックする
+        - ※ runBlockingは現在のスレッドをブロックする
+    - CoroutineScope内で呼び出された、suspend関数はデフォルトでいわゆるawaitの挙動になる
 - runBlocking内のスコープ（関数）内ではthisがCoroutineScopeを指しているので、launchは、実際にはthis.launchと同様の呼び出しとなっている
 　そのため、ネストされたCoroutineには親子関係が存在することになる
   ```
